@@ -1,0 +1,39 @@
+CREATE TABLE Muebles(
+Nombre INTEGER PRIMARY KEY,
+Precio VARCHAR(10)
+);
+
+
+CREATE TABLE Tiene(
+NombreMuebles INTEGER REFERENCES Muebles(Codigo),
+IDPiezas INTEGER REFERENCES Piezas(Codigo),
+Unidades VARCHAR(20)
+);
+
+
+CREATE TABLE Piezas(
+ID INTEGER AUTO_INCREMENT PRIMARY KEY not null
+);
+
+
+CREATE TABLE EstanAlmacenados(
+IDPiezas INTEGER REFERENCES Piezas(Codigo),
+PasilloEstante INTEGER REFERENCES Estante(Codigo),
+AlturaEstante INTEGER REFERENCES Estante(Codigo),
+Cantidad VARCHAR(20)
+);
+
+
+CREATE TABLE Estante(
+Pasillo VARCHAR(20) not null,
+Altura VARCHAR(20) not null,
+PRIMARY KEY(Pasillo,Altura)
+);
+
+
+Muebles(Nombre, Precio)
+Tiene(NombreMuebles, IDPiezas, Unidades)
+Piezas(ID)
+EstanAlmacenados(IDPiezas, PasilloEstante, AlturaEstante, Cantidad)
+Estante(Pasillo, Altura)
+);

@@ -1,0 +1,52 @@
+CREATE TABLE Actores(
+Codigo INTEGER AUTO_INCREMENT PRIMARY KEY not null,
+Nombre VARCHAR(40),
+Fecha DATE,
+Nacionalidad VARCHAR(20),
+CodigoPersonaje INTEGER REFERENCES PERSONAJES(Codigo)
+);
+
+
+CREATE TABLE Personajes(
+CodigoPersonaje INTEGER AUTO_INCREMENT PRIMARY KEY not null,
+Nombre VARCHAR(30),
+Raza VARCHAR(20),
+Grado VARCHAR(20),
+CodigoActor INTEGER REFERENCES Actores(Codigo),
+CodigoSuperior INTEGER REFERENCES Personajes(Codigo)
+);
+
+
+CREATE TABLE Planetas(
+CodigoPlanetas INTEGER AUTO_INCREMENT PRIMARY KEY not null,
+Galaxia VARCHAR(20),
+Nombre VARCHAR(20)
+);
+
+
+CREATE TABLE Peliculas(
+CodigoPeliculas INTEGER AUTO_INCREMENT PRIMARY KEY not null,
+Titulo VARCHAR(30),
+Director VARCHAR(20),
+año VARCHAR(10)
+);
+
+
+CREATE TABLE PersonajesPeliculas(
+CodigoPersonajes INTEGER REFERENCES Personajes(Codigo),
+CodigoPeliculas INTEGER REFERENCES Peliculas(Codigo)
+);
+
+
+CREATE TABLE Visitas(
+CodigoNaves INTEGER REFERENCES Naves(Codigo),
+CodigoPlanetas INTEGER REFERENCES Planetas(Codigo),
+CodigoPeliculas INTEGER REFERENCES Peliculas(Codigo)
+);
+
+
+CREATE TABLE Naves(
+CodigoNaves INTEGER AUTO_INCREMENT PRIMARY KEY not null,
+NTripulantes VARCHAR(10),
+Nombre VARCHAR(20)
+);

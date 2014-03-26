@@ -1,0 +1,50 @@
+CREATE TABLE Aparato(
+Codigo INTEGER AUTO_INCREMENT PRIMARY KEY,
+Descripcion VARCHAR(50),
+NombreTipo INTEGER REFERENCES Tipo(Codigo)
+);
+
+
+CREATE TABLE Aparato2(
+NombreTipo INTEGER REFERENCES Tipo(Codigo),
+CaracteristicasTipo INTEGER REFERENCES Tipo(Codigo)
+);
+
+
+CREATE TABLE Tipo(
+Nombre INTEGER PRIMARY KEY,
+Caracteristicas VARCHAR(40),
+NombreTipo VARCHAR(40)
+);
+
+
+CREATE TABLE Lleva(
+CodigoAparato INTEGER REFERENCES Aparato(Codigo),
+Precio VARCHAR(10),
+Cantidad VARCHAR(10)
+);
+
+
+CREATE TABLE Lleva2(
+CodigoAparato INTEGER REFERENCES Aparato(Codigo),
+NombreComponentes INTEGER REFERENCES Componentes(Codigo)
+);
+
+
+CREATE TABLE Componentes(
+Nombre INTEGER PRIMARY KEY,
+Especificaciones VARCHAR(40),
+CifFabricante INTEGER REFERENCES Fabricante(Codigo)
+);
+
+
+CREATE TABLE Suministra(
+NombreComponentes INTEGER REFERENCES Componentes(Codigo),
+CifFabricante INTEGER REFERENCES Fabricante(Codigo)
+);
+
+
+CREATE TABLE Fabricante(
+Cif INTEGER PRIMARY KEY,
+Domicilio VARCHAR(20)
+);
